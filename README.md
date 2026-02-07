@@ -263,23 +263,6 @@ sequenceDiagram
     API-->>Client: JSON Response
 ```
 
-### 4. WebSocket Streaming
-```mermaid
-sequenceDiagram
-    Client->>Pusher: Connect to private-chat.{userId}
-    Pusher-->>Client: Connected
-    Client->>API: POST /chat/query
-    API->>ChatService: handleQuery()
-    ChatService->>Ollama: Get Complete Answer
-    Ollama-->>ChatService: Full Answer
-    loop Stream Chunks
-        ChatService->>Pusher: Broadcast Chunk
-        Pusher-->>Client: Chunk Received
-    end
-    ChatService->>Pusher: Broadcast Done
-    Pusher-->>Client: Stream Complete
-``
-
 ## 📦 Dependencies
 
 ### PHP Packages
